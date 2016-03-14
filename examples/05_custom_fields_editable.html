@@ -5,6 +5,7 @@
 
   <link href="../dist/jsoneditor.css" rel="stylesheet" type="text/css">
   <script src="../dist/jsoneditor.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 
   <style type="text/css">
     #jsoneditor {
@@ -21,7 +22,9 @@
     <li>the field <code>name</code> is read-only but has an editable value</li>
     <li>the field <code>age</code> and its value are editable</li>
   </ul>
-
+<!--
+  <button type="button" class="btn btn-primary" onclick="bindClic()"> Bind </button>
+-->
   <div id="jsoneditor"></div>
 
   <script>
@@ -57,7 +60,20 @@
       age: 32
     };
 
+
     var editor = new JSONEditor(container, options, json);
+
+    var bindClic = function() {
+      // Handler for .ready() called.
+      //alert('Avvio Script');
+      $(".jsoneditor-field").click(function() {
+        //alert('ciao');
+        alert($(this).text());
+      })
+    };
+
+    //$().load(jsoneditor-field)
+    $(document).ready(bindClic);
   </script>
 </body>
 </html>
