@@ -22,9 +22,9 @@
     <li>the field <code>name</code> is read-only but has an editable value</li>
     <li>the field <code>age</code> and its value are editable</li>
   </ul>
-<!--
+
   <button type="button" class="btn btn-primary" onclick="bindClic()"> Bind </button>
--->
+
   <div id="jsoneditor"></div>
 
   <script>
@@ -57,23 +57,32 @@
     var json = {
       _id: 123456,
       name: 'John',
-      age: 32
+      age: 32,
+      myObject: {
+        a: "b",
+        c: "d"
+      },
     };
 
 
     var editor = new JSONEditor(container, options, json);
 
+
+
     var bindClic = function() {
       // Handler for .ready() called.
       //alert('Avvio Script');
-      $(".jsoneditor-field").click(function() {
+      //Effettua il bind degli elementi che non hanno già ricevuto il bind
+      $("div .jsoneditor-field").not(".binded").click(function() {
         //alert('ciao');
         alert($(this).text());
       })
+      //Aggiunge la classe in modo da poter ignorare gli elementi in caso si effettui nuovamente il bind
+      $("div .jsoneditor-field").not(".binded").addClass("binded");
     };
 
     //$().load(jsoneditor-field)
-    $(document).ready(bindClic);
+    //$(document).ready(bindClic);
   </script>
 </body>
 </html>
